@@ -62,9 +62,13 @@ const usuariosDelete = async (req, res = response) => {
 
     const { id } = req.params;
 
-    // const user =  await User.findByIdAndDelete(id);
     const usuario = await User.findByIdAndUpdate(id, {status: false})
-    res.json(usuario);
+    const usuarioAutenticado = req.usuario;
+    
+    res.json({
+        usuario,
+        usuarioAutenticado
+    });
 }
 
 const usuariosPatch = (req, res = response) => {
